@@ -23,6 +23,7 @@ namespace ViewDiscovery.Views
             this.InitializeComponent();
             this.AttachDevTools();
 
+            //关键点 40 将视图注册到区域里面 
             _regionManager = regionManager;
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
             regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
@@ -42,10 +43,12 @@ namespace ViewDiscovery.Views
             Test();
         }
 
+        //关键点 50 
         private async void Test()
         {
             while (true)
             {
+                //确认区域存在
                 if (!_regionManager.Regions.ContainsRegionWithName(RegionNames.ContentRegion))
                 {
                     // Catch error caused by framework changes
@@ -53,24 +56,26 @@ namespace ViewDiscovery.Views
                     return;
                 }
 
+                //得到区域
                 var region = _regionManager.Regions["ContentRegion"];
-                var viewA = region.Views.FirstOrDefault();
-                var viewB = region.Views.Skip(1).FirstOrDefault();
+
+                //得到区域中已注册的视图(在关键点 40 注册的)
+                var viewA  = region.Views.FirstOrDefault();
+                var viewB  = region.Views.Skip(1).FirstOrDefault();
+
+                //间隔2秒 切换视图
 
                 await Task.Delay(2000);
                 await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    // NOTE TO DEV:
-                    //  If your view is not registered with the region
-                    //  the following line will throw an error.
-                    region.Activate(viewB);
-                });
+                                                      {
+                                                          // NOTE TO DEV:
+                                                          //  If your view is not registered with the region
+                                                          //  the following line will throw an error.
+                                                          region.Activate(viewB);
+                                                      });
 
                 await Task.Delay(2000);
-                await Dispatcher.UIThread.InvokeAsync(() =>
-                {
-                    region.Activate(viewA);
-                });
+                await Dispatcher.UIThread.InvokeAsync(() => { region.Activate(viewA); });
             }
         }
     }

@@ -10,6 +10,7 @@
         x:Class="ViewDiscovery.Views.MainWindow">
   <Panel>
     <Grid>
+      <!-- 关键点 30 为 ContentControl 指定了区域名称 (方式与原版prism一致)-->
       <!--<ContentControl prism:RegionManager.RegionName="ContentRegion" />-->
       <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
     </Grid>

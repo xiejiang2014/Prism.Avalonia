@@ -7,7 +7,7 @@ using ViewDiscovery.Views;
 
 namespace ViewDiscovery;
 
-public class App : PrismApplication
+public class App : PrismApplication  //关键点1 App 从 PrismApplication 继承
 {
     public App()
     {
@@ -18,7 +18,9 @@ public class App : PrismApplication
     {
         System.Diagnostics.Debug.WriteLine("Initialize()");
         AvaloniaXamlLoader.Load(this);
-        base.Initialize();
+
+        base.Initialize(); //关键点10 执行 PrismApplication.Initialize() 方法
+
     }
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -39,13 +41,11 @@ public class App : PrismApplication
     {
         System.Diagnostics.Debug.WriteLine("OnInitialized()");
 
-        // Alternative Approach:
-        //  Instead of registering the Views in the MainWindow (as this samples does),
-        //  you can register them here in OnInitialized(), or CreateShell(), or RegisterTypes(..)
-        //  by resolving the `IRegionManager` from the container.
-        //
-        ////var regionManager = Container.Resolve<IRegionManager>();
-        ////regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
-        ////regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
+        //替代方法：
+        //您可以通过从容器中解析“IRegionManager”，在 OnInitialized()、CreateShell() 或 RegisterTypes(..) 中注册视图，
+        //而不是在 MainWindow 中注册视图（如本示例所示）。
+        //var regionManager = Container.Resolve<IRegionManager>();
+        //regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewA));
+        //regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(ViewB));
     }
 }

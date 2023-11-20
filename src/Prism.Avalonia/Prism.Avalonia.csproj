@@ -18,6 +18,8 @@ Prism.Avalonia helps you more easily design and build rich, flexible, and easy t
     <Title>Prism.Avalonia</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>Prism.Avalonia.png</PackageIcon>
+    <AssemblyVersion>8.1.23324.0029</AssemblyVersion>
+    <FileVersion>8.1.23324.0029</FileVersion>
   </PropertyGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">

@@ -3,6 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <Authors>Damian Suess</Authors>
+    <AssemblyVersion>8.1.23324.0033</AssemblyVersion>
+    <FileVersion>8.1.23324.0033</FileVersion>
   </PropertyGroup>
 
   <Import Project="../../build/SampleApp.props" />
